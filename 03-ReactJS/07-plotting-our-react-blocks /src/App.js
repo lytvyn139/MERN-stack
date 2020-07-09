@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Navigation from './Components/Navigation';
@@ -6,8 +6,8 @@ import Main from './Components/Main';
 import SubContents from './Components/SubContents';
 import Advertisement from './Components/Advertisement';
 
-
-function App() {
+class App extends Component {
+  render() {
   return (
     <div className="container">
       <div className="header">
@@ -34,16 +34,9 @@ function App() {
               <Advertisement />
             </div>
           </div>
-      </div>
-
-        
-        
-        
-        
-
-    </div>
-  
+          </div></div>
   );
+}
 }
 
 export default App;
