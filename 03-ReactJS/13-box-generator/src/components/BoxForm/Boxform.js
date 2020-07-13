@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Boxform.scss";
+//import "./Boxform.scss";
 
 export default class Boxform extends Component {
   constructor(props) {

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { default as UUID } from "uuid";
 
-import "./Boxlist.scss";
 import Box from "../Box/Box";
 import Boxform from "../BoxForm/Boxform";
+
+//import "./Boxlist.scss";
 
 export default class BoxList extends Component {
   constructor(props) {

@@ -1,13 +1,18 @@
-import React from "react";
-import BoxList from "./components/BoxList/BoxList";
-
-//import Boxform from "./components/BoxForm/Boxform";
-//import Box from "./components/Box/Box";
+import React, { useState } from "react";
+import BoxForm from "./components/BoxForm";
+import BoxDisplay from "./components/BoxDisplay";
 
 function App() {
+  const [colorsList, setColorsList] = useState([]);
+
+  const addNewColor = (newColor) => {
+    setColorsList([...colorsList, newColor]);
+  };
+
   return (
-    <div className='container'>
-      <BoxList />
+    <div className='App'>
+      <BoxForm onNewColor={addNewColor} />
+      <BoxDisplay colors={colorsList} />
     </div>
   );
 }
