@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-red {
+  background-color: red;
+  color: white;
+}
+
+.btn-green {
+  background-color: green;
+  color: white;
+}
