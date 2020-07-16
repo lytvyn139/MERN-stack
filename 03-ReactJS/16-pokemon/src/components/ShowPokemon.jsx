@@ -2,35 +2,62 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ShowPokemon = () => {
-  const [pokeList, setPokeList] = useState([]);
+  const [pokelist, setPokelist] = useState([]);
+  const [todisplay, setTodisplay] = useState([]);
   const [search, setSearch] = useState("");
-  const [toDisplay, setToDisplay] = useState([]);
+  const [pokedetails, setPokedetails] = useState({ name: "...", sprites: [] });
+
+  const getDetails = (pkmn) => {
+    console.log(pkmn);
+    axios
+      .get(pkmn.url)
+      .then((res) => {
+        console.log(res.data);
+        setPokedetails(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=807ge")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=870")
       .then((res) => {
         console.log(res.data.results);
-        setPokeList(res.data.results);
-        setToDisplay(res.data.results);
+        setPokelist(res.data.results);
+        setTodisplay(res.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    setToDisplay(pokeList.filter((p) => p.name.includes(search)));
+    setTodisplay(pokelist.filter((p) => p.name.includes(search)));
   }, [search]);
 
   return (
     <div>
       <h1>POKEMON</h1>
-      <input type='text' onChange={(e) => setSearch(e.target.value)} />
-      <ul>
-        {toDisplay.map((pokemonUnit, i) => (
-          <li key={i}>{`${pokemonUnit.name.toUpperCase()} 👹
-          ${pokemonUnit.url}`}</li>
-        ))}
-      </ul>
+      <div className='container'>
+        <div className='pokemon-list'>
+          <input type='text' onChange={(e) => setSearch(e.target.value)} />
+        </div>
+        <div className='pokemon-list'>
+          <ul>
+            {todisplay.map((pkmn, i) => (
+              <li
+                key={i}
+                className='list-group-item'
+                onClick={(e) => getDetails(pkmn)}>
+                {pkmn.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className='pokemon-img'>
+          <img src={pokedetails.sprites.front_default} />
+          <img src={pokedetails.sprites.back_default} />
+        </div>
+      </div>
     </div>
   );
 };

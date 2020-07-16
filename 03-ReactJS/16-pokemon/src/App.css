@@ -2,3 +2,17 @@ ul,
 li {
   list-style-type: none;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.pokemon-list {
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.pokemon-img {
+  width: 192px;
+}
