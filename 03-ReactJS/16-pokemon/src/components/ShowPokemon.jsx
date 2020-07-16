@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ShowPokemon() {
+const ShowPokemon = () => {
   const [pokeList, setPokeList] = useState([]);
   const getPokemon = (e) => {
     axios
@@ -13,10 +13,13 @@ function ShowPokemon() {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    getPokemon();
+  }, []);
+
   return (
     <div>
       <h1>POKEMON</h1>
-      <button onClick={getPokemon}>GET </button>
       <ul>
         {pokeList.map((pokemonUnit, i) => (
           <li key={i}>{`${pokemonUnit.name.toUpperCase()} 👹
@@ -25,5 +28,5 @@ function ShowPokemon() {
       </ul>
     </div>
   );
-}
+};
 export default ShowPokemon;
