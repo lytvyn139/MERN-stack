@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 
-const Locations = (props) => {
+const Page404 = (props) => {
   useEffect(() => {
     console.log(props);
   }, [props]);
 
   return (
     <div className='col-sm-8 offset-sm-2'>
-      <h1>Welcome to the {props.city} location!</h1>
+      <h2>Can't find the page {props.location.pathname} </h2>
     </div>
   );
 };
 
-export default Locations;
+export default Page404;
