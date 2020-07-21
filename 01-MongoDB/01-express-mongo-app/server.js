@@ -1,6 +1,7 @@
+/* navigate to */
 const express = require("express");
 const cors = require("cors");
-const PORT = 8000;
+const PORT = 8008;
 const app = express();
 
 app.use(cors());
@@ -8,7 +9,7 @@ app.use(express.json());
 
 //new db code
 const mongoose = require("mongoose");
-const db_name = "menu";
+const db_name = "new_menu";
 mongoose
   .connect(`mongodb://localhost/${db_name}`, {
     useNewUrlParser: true,
@@ -26,12 +27,12 @@ const MenuSchema = new mongoose.Schema(
       minlength: [3, "item name must be 3 char or longer"],
     },
     price: {
-      Number,
+      type: Number,
       required: [true, "item must have a price"],
       min: [0, "price cannot be less than 0"],
     },
     course: {
-      String,
+      type: String,
       required: [true, "course must have a name"],
     },
   },
@@ -46,6 +47,10 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "ok" });
 });
 
+/* 
+in postman nivigate to create get/post req:
+http://localhost:8008/api/menu 
+*/
 app.get("/api/menu", (req, res) => {
   Menu.find({})
     .then((menuItems) => res.json(menuItems))
