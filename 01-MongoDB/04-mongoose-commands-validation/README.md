@@ -3,6 +3,14 @@
 ## Validation
 
 ![](valid.png)
+date validation in: *.model.js
+```
+start: {
+	type: Date,
+	required: [true, ‘Start time is required’],
+	min: [new Date(), “Date must be in future”]
+	}
+```
 
 ## Common Mongoose Commands
 
