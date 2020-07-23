@@ -2,7 +2,7 @@ console.log("server.js");
 
 const express = require("express");
 const cors = require("cors");
-const PORT = 8000;
+const port = 8008;
 const app = express();
 const db_name = "schedule_db";
 
@@ -12,4 +12,4 @@ app.use(express.json());
 require("./server/config/mongoose")(db_name);
 require("./server/routes/schedule.routes")(app);
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));

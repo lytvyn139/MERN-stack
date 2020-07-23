@@ -1,24 +1,24 @@
 import React from "react";
-import "./App.css";
 import Display from "./components/Display";
 import ScheduleForm from "./components/ScheduleForm";
+import EditSchedule from "./components/EditSchedule";
 import { Link, Router } from "@reach/router";
+import "./App.css";
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Schedule app</h1>
+    <div className="main-display">
+      <h1>Schedule App</h1>
       <Link className='btn' to='/'>
-        {" "}
-        Schedule{" "}
+        Schedule
       </Link>
       <Link className='btn' to='/new'>
-        {" "}
-        New activity{" "}
+        New Activity
       </Link>
       <Router>
         <Display path='/' />
-        <ScheduleForm path='new' />
+        <ScheduleForm path='/new' />
+        <EditSchedule path='/edit/:_id' />
       </Router>
     </div>
   );
