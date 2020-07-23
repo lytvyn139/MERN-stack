@@ -61,10 +61,10 @@ const Display = (props) => {
           <h2>{act.activity}</h2>
           <div>
             <p>{moment(act.start).format("MMMM Do YYYY, h:mm:ss a")}</p>
-            <p>
+            <div>
               <p>Description: {act.description}</p>
               Duration: {act.duration} {act.units}
-            </p>
+            </div>
             <Link className='btn' to={`/edit/${act._id}`}>
               Edit
             </Link>
