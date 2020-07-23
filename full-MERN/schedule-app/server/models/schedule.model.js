@@ -7,12 +7,12 @@ const ScheduleSchema = new mongoose.Schema(
     activity: {
       type: String,
       required: [true, "Activity is required"],
-      minlength: [3, "Activity must be 3 char or longer"],
+      minlength: [3, "Activity must be 3 characters or longer"],
     },
     description: {
       type: String,
       required: [true, "Description is required"],
-      minlength: [3, "Description must be 5 char or longer"],
+      minlength: [10, "Description must be 10 characters or longer"],
     },
     start: {
       type: Date,
@@ -21,7 +21,7 @@ const ScheduleSchema = new mongoose.Schema(
     duration: {
       type: Number,
       required: [true, "Duration is required"],
-      min: [0, "Duration cannot be less than 0 "],
+      min: [0, "Duration cannot be less than 0"],
     },
     units: {
       type: String,
@@ -30,4 +30,4 @@ const ScheduleSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.export = mongoose.model("Schedule", ScheduleSchema);
+module.exports = mongoose.model("Schedule", ScheduleSchema);

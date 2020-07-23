@@ -1,4 +1,4 @@
-console.log("schedule.mongoose.js");
+console.log("mongoose.js");
 
 const mongoose = require("mongoose");
 
