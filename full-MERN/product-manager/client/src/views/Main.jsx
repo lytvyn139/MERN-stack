@@ -1,21 +1,42 @@
-import React, { useEffect, useState } from "react";
-import ProductForm from "../components/ProductForm";
-import ProductList from "../components/ProductList";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+
+import ProductForm from '../components/ProductForm';
+import ProductList from '../components/ProductList';
+import axios from 'axios';
+
 export default () => {
-  const [product, setProduct] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    axios.get("http://localhost:8000/api/see_all_products").then((res) => {
-      setProduct(res.data);
-      setLoaded(true);
-    });
-  }, []);
-  return (
-    <div>
-      <p>to add navigate to: http://localhost:3000/product/see_products</p>
-      <ProductForm />
-      <ProductList product={product} />
-    </div>
-  );
-};
+    const [products, setProducts] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/products')
+            .then(response => { setProducts(response.data.products) })
+            .catch(err => console.log(err));
+        setLoaded(true);
+    }, [products]);
+
+    const createProduct = product => {
+        axios.post('http://localhost:8000/api/product/new', product)
+            .then(res => { setProducts([...products, res.data]); })
+            .catch(err => {
+                const errorResponse = err.response.data.errors;
+                const errArr = [];
+                for (const key of Object.keys(errorResponse)) {
+                    errArr.push(errorResponse[key].message)
+                }
+                setErrors(errArr);
+            })
+    }
+
+    return (
+        <div className="py-5">
+            <h1>Product Manager</h1>
+            <div className="row-col text-sm text-danger ">
+                {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+            </div>
+            <ProductForm onSubmitProp={createProduct} initialTitle="" intialPrice="" intialDescription="" />
+            <hr />
+            {loaded && <ProductList />}
+        </div>
+    )
+}
