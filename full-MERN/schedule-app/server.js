@@ -2,7 +2,7 @@ console.log("server.js");
 
 const express = require("express");
 const cors = require("cors");
-const port = 8008;
+const port = 8000;
 const app = express();
 const db_name = "schedule_db";
 
